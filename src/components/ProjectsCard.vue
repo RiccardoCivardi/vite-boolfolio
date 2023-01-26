@@ -6,7 +6,15 @@ export default {
   props: {
 
     project: Object
-    
+
+  },
+
+  data(){
+    return{
+
+      textMaxLength: 100
+
+    }
   },
 
   methods: {

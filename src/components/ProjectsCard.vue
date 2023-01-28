@@ -33,9 +33,14 @@ export default {
 
   <div class="card-wrapper">
 
-    <div class="card" style="width: 18rem;">
+    <div class="card h-100" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title">Progetto: {{project.name}}</h5>
+        <div class="d-flex justify-content-between align-items-center">
+          <h5 class="card-title me-3">{{project.name}}</h5>
+          <router-link :to="{name: 'project', params: {slug: project.slug}}">
+            <i class="fa-regular fa-eye fs-3 text-light"></i>
+          </router-link>
+        </div>
         <h5 v-if="project.type"><span class="badge text-bg-primary">{{project.type.name}}</span></h5>
         
         <div 
@@ -57,8 +62,10 @@ export default {
 
 <style lang="scss" scoped>
 
-.card-wrapper {
-  padding: 10px 10px;
-}
+  .card-wrapper {
+    width: calc(100% / 4);
+    min-width: 300px;
+    padding: 10px 10px;
+  }
 
 </style>

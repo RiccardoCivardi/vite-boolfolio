@@ -1,4 +1,9 @@
 <script>
+
+import { textMaxLength } from '../data/data';
+
+import {truncateText, formatDate} from '../data/function';
+
 export default {
 
   name:'ProjectsCard',
@@ -12,16 +17,16 @@ export default {
   data(){
     return{
 
-      textMaxLength: 100
+      textMaxLength,
+      truncateText
 
     }
   },
 
-  methods: {
+  computed: {
 
-    truncateText(text) {
-      if(text.length < this.textMaxLength) return text
-      return text.substring(0,this.textMaxLength) + '...';
+    dateFormat(){
+    return formatDate(this.project.updated_at);
     }
 
   }
@@ -33,8 +38,8 @@ export default {
 
   <div class="card-wrapper">
 
-    <div class="card h-100" style="width: 18rem;">
-      <div class="card-body">
+    <div class="card h-100">
+      <div class="card-body text-center">
         <div class="d-flex justify-content-between align-items-center">
           <h5 class="card-title me-3">{{project.name}}</h5>
           <router-link :to="{name: 'project', params: {slug: project.slug}}">
@@ -52,7 +57,7 @@ export default {
         </div>
 
         <h6 class="card-title">Cliente: {{project.client_name}}</h6>
-        <div class="card-text" v-html="truncateText(project.summary)"></div>
+        <div class="card-text" v-html="truncateText(project.summary, textMaxLength)"></div>
       </div>
     </div>
 
